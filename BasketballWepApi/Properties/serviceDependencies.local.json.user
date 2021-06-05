@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2021-06-04T21:30:41.89135Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-06-04T21:30:58.8719535Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "63cd7866-a7a6-4f3c-8d58-1f7df561416a"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "basketballapigroup"
+    }
+  }
+}
