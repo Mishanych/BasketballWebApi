@@ -1,0 +1,48 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2021-06-05T10:39:18.7642212Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-06-05T10:26:34.1196486Z"
+    },
+    "apis1": {
+      "restored": true,
+      "restoreTime": "2021-06-05T10:25:30.0808593Z"
+    }
+  },
+  "parameters": {
+    "apis1.resourceGroupName": {
+      "Name": "apis1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "basketballapigroup"
+    },
+    "secrets1.resourceGroupName": {
+      "Name": "secrets1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "basketballapigroup"
+    },
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "63cd7866-a7a6-4f3c-8d58-1f7df561416a"
+    },
+    "apis1.subscriptionId": {
+      "Name": "apis1.subscriptionId",
+      "Type": "subscription",
+      "Value": "63cd7866-a7a6-4f3c-8d58-1f7df561416a"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "basketballapigroup"
+    },
+    "secrets1.subscriptionId": {
+      "Name": "secrets1.subscriptionId",
+      "Type": "subscription",
+      "Value": "63cd7866-a7a6-4f3c-8d58-1f7df561416a"
+    }
+  }
+}

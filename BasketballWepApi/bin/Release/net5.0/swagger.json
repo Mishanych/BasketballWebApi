@@ -1,0 +1,687 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "BasketballWepApi",
+    "version": "v1"
+  },
+  "paths": {
+    "/Db/leagues/{leagueName}": {
+      "get": {
+        "tags": [
+          "Db"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "leagueName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/LeagueData"
+            }
+          }
+        }
+      }
+    },
+    "/Db/teams/{teamName}": {
+      "get": {
+        "tags": [
+          "Db"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "teamName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TeamData"
+            }
+          }
+        }
+      }
+    },
+    "/Db/players/{playerName}": {
+      "get": {
+        "tags": [
+          "Db"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "playerName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PlayerData"
+            }
+          }
+        }
+      }
+    },
+    "/Db/games/{leagueName}/{matchDate}": {
+      "get": {
+        "tags": [
+          "Db"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "leagueName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "matchDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MatchData"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Leagues": {
+      "get": {
+        "tags": [
+          "Leagues"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LeagueData"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Leagues/{id}": {
+      "get": {
+        "tags": [
+          "Leagues"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/LeaguesResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Matches/date/{leagueId}/{dateRow}": {
+      "get": {
+        "tags": [
+          "Matches"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dateRow",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "leagueId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MatchData"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Matches/id/{leagueId}": {
+      "get": {
+        "tags": [
+          "Matches"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "leagueId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MatchData"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Players/byName/{name}": {
+      "get": {
+        "tags": [
+          "Players"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayerData"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Players": {
+      "get": {
+        "tags": [
+          "Players"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayerResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Team/byLeagueId/{leagueId}": {
+      "get": {
+        "tags": [
+          "Team"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "leagueId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TeamResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Team/byName/{name}": {
+      "get": {
+        "tags": [
+          "Team"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TeamData"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Team": {
+      "get": {
+        "tags": [
+          "Team"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TeamResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "MatchData": {
+      "type": "object",
+      "properties": {
+        "matchId": {
+          "type": "string"
+        },
+        "leagueId": {
+          "type": "string"
+        },
+        "leagueName": {
+          "type": "string"
+        },
+        "quarterCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "matchTime": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "status": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "quarterRemainTime": {
+          "type": "string"
+        },
+        "homeId": {
+          "type": "string"
+        },
+        "homeName": {
+          "type": "string"
+        },
+        "homeRank": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "awayId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "awayName": {
+          "type": "string"
+        },
+        "awayRank": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "homeScore": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "awayScore": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "overTimeCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "leagueSeason": {
+          "type": "string"
+        },
+        "matchType": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "hasStats": {
+          "type": "boolean"
+        },
+        "explain": {
+          "type": "string"
+        },
+        "roundType": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "neutral": {
+          "type": "boolean"
+        },
+        "league": {
+          "$ref": "#/definitions/LeagueData"
+        }
+      }
+    },
+    "PlayerData": {
+      "type": "object",
+      "properties": {
+        "playerId": {
+          "type": "string"
+        },
+        "number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "place": {
+          "type": "string"
+        },
+        "birthday": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "height": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "weight": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "nbaAge": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "salary": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/TeamData"
+        }
+      }
+    },
+    "TeamData": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "type": "string"
+        },
+        "leagueId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "conference": {
+          "type": "string"
+        },
+        "division": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "venue": {
+          "type": "string"
+        },
+        "capacity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "joinYear": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "championCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "coach": {
+          "type": "string"
+        },
+        "league": {
+          "$ref": "#/definitions/LeagueData"
+        },
+        "players": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlayerData"
+          }
+        }
+      }
+    },
+    "LeagueData": {
+      "type": "object",
+      "properties": {
+        "leagueId": {
+          "type": "string"
+        },
+        "leagueName": {
+          "type": "string"
+        },
+        "leagueShortName": {
+          "type": "string"
+        },
+        "leagueKind": {
+          "type": "string"
+        },
+        "matches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MatchData"
+          }
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TeamData"
+          }
+        }
+      }
+    },
+    "LeaguesResponse": {
+      "type": "object",
+      "properties": {
+        "leagueName": {
+          "type": "string"
+        },
+        "leagueShortName": {
+          "type": "string"
+        },
+        "leagueKind": {
+          "type": "string"
+        }
+      }
+    },
+    "PlayerResponse": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "place": {
+          "type": "string"
+        },
+        "height": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "weight": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "nbaAge": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "TeamResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "division": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "championCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "coach": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
