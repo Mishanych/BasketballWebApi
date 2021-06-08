@@ -36,7 +36,10 @@ namespace WebApi.Controllers
             _playersController = playersController;
         }
 
-
+        public void Func()
+        {
+            _dbContext.LeaguesData.Find("");
+        }
         #region Leagues
 
 
@@ -44,8 +47,8 @@ namespace WebApi.Controllers
         [Route("leagues/{leagueName}")]
         public async Task<LeagueData> GetLeagueByName(string leagueName)
         {
-         
-            var result = FindLeague(leagueName);
+
+            var result = await _dbContext.LeaguesData.FindAsync(leagueName);
 
             if(result != null)
             {
@@ -54,7 +57,7 @@ namespace WebApi.Controllers
             else
             {
                 await _leaguesController.GetAllLeagues();
-                result = FindLeague(leagueName);
+                result = await _dbContext.LeaguesData.FindAsync(leagueName);
                 if (result != null)
                 {
                     return result;

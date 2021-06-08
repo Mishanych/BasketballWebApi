@@ -14,8 +14,10 @@ namespace BasketballWebApi.Models
 
     public class LeagueData
     {
-        [Key]
+        
         public string leagueId { get; set; }
+
+        [Key]
         public string leagueName { get; set; }
         public string leagueShortName { get; set; }
         public string leagueKind { get; set; }

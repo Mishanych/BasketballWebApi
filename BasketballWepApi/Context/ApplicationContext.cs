@@ -10,11 +10,12 @@ namespace WebApi.Context
 {
     public class ApplicationContext : DbContext
     {
+        public DbSet<Favourite> Favourite { get; set; }
         public DbSet<LeagueData> LeaguesData { get; set; }
         public DbSet<MatchData> MatchesData { get; set; }
         public DbSet<TeamData> TeamsData { get; set; }
         public DbSet<PlayerData> PlayersData { get; set; }
-        public DbSet<Favourite> Favourite { get; set; }
+        
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         { }
