@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using WebApi.Context;
 
@@ -36,10 +37,6 @@ namespace WebApi.Controllers
             _playersController = playersController;
         }
 
-        public void Func()
-        {
-            _dbContext.LeaguesData.Find("");
-        }
         #region Leagues
 
 
@@ -69,18 +66,6 @@ namespace WebApi.Controllers
             }
         }
 
-        private LeagueData FindLeague(string leagueName)
-        {
-            foreach (var league in _dbContext.LeaguesData)
-            {
-                if (league.leagueName.ToLower() == leagueName.ToLower() || league.leagueShortName.ToLower() == leagueName.ToLower())
-                {
-                    return league;
-                }
-            }
-            return null;
-        }
-
 
         #endregion
 
@@ -91,8 +76,14 @@ namespace WebApi.Controllers
         [Route("teams/{teamName}")]
         public async Task<TeamData> GetTeamByName(string teamName)
         {
-            var result = FindTeam(teamName);
+            //var result = FindTeam(teamName);
+            teamName = teamName.ToLower();
+            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
 
+            TextInfo text = cultureInfo.TextInfo;
+            var team = text.ToTitleCase(teamName);
+
+            var result = await _dbContext.TeamsData.FindAsync(team);
             if (result != null)
             {
                 return result;
@@ -100,7 +91,7 @@ namespace WebApi.Controllers
             else
             {
                 await _teamController.GetTeamByName(teamName);
-                result = FindTeam(teamName);
+                result = await _dbContext.TeamsData.FindAsync(team);
                 if (result != null)
                 {
                     return result;

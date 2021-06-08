@@ -12,10 +12,11 @@ namespace BasketballWebApi.Models
     }
     public class TeamData
     {
-        [Key]
+        
         public string teamId { get; set; }
         public string leagueId { get; set; }
         public string name { get; set; }
+        [Key]
         public string shortName { get; set; }
         public string logo { get; set; }
         public string website { get; set; }
