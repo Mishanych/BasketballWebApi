@@ -17,6 +17,7 @@ namespace BasketballWebApi.Models
         public string leagueId { get; set; }
         public string leagueName { get; set; }
         public int quarterCount { get; set; }
+        [Key]
         public int matchTime { get; set; }
         public int status { get; set; }
         public string quarterRemainTime { get; set; }

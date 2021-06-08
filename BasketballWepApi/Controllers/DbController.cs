@@ -114,8 +114,8 @@ namespace WebApi.Controllers
         [Route("players/{playerName}")]
         public async Task<PlayerData> GetPlayerByName(string playerName)
         {
-            //var result = FindPlayer(playerName);
-            var result = await _dbContext.PlayersData.FindAsync(playerName);
+            var result = FindPlayer(playerName);
+            //var result = await _dbContext.PlayersData.FindAsync(playerName);
             if (result != null)
             {
                 return result;
@@ -161,39 +161,27 @@ namespace WebApi.Controllers
             {
                 await _leaguesController.GetAllLeagues();
             }
-
-            string leagueId = string.Empty;
-            foreach (var league in _dbContext.LeaguesData)
+            var matches = FindMatch(leagueName, matchDate);
+            if (matches != null)
+            {
+                return matches;
+            }
+            else
             {
 
-                if (league.leagueName.ToLower() == leagueName.ToLower() || league.leagueShortName.ToLower() == leagueName.ToLower())
+                string leagueId = string.Empty;
+                var result = await _dbContext.LeaguesData.FindAsync(leagueName);
+                if (result != null)
                 {
-                    leagueId = league.leagueId;
-                    break;
+                    leagueId = result.leagueId;
                 }
+                else
+                {
+                    return null;
+                }
+
+                return await _matchesController.GetAllMatchesByDate(matchDate, leagueId);
             }
-            if (leagueId == null)
-            {
-                return null;
-            }
-            return await _matchesController.GetAllMatchesByDate(matchDate, leagueId);
-
-            //var result = FindMatch(leagueName, matchDate);
-            //if (result != null)
-            //{
-            //    return result;
-            //}
-
-            //return null;
-                
-
-                
-                
-            //    await _matchesController.GetAllMatchesByDate(matchDate, leagueId);
-
-            //    return FindMatch(leagueName, matchDate);
-            //}
-
         }
 
         private List<MatchData> FindMatch(string leagueName, string matchDate)
