@@ -16,9 +16,8 @@ namespace BasketballWebApi.Models
     {
         
         public string leagueId { get; set; }
-
-        [Key]
         public string leagueName { get; set; }
+        [Key]
         public string leagueShortName { get; set; }
         public string leagueKind { get; set; }
 

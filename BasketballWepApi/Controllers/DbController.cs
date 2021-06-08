@@ -47,7 +47,7 @@ namespace WebApi.Controllers
         [Route("leagues/{leagueName}")]
         public async Task<LeagueData> GetLeagueByName(string leagueName)
         {
-
+            leagueName = leagueName.ToUpper();
             var result = await _dbContext.LeaguesData.FindAsync(leagueName);
 
             if(result != null)
