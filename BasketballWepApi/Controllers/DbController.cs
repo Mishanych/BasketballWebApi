@@ -123,7 +123,7 @@ namespace WebApi.Controllers
             else
             {
                 await _playersController.GetPlayerByName(playerName);
-                result = FindPlayer(playerName);
+                result = await _dbContext.PlayersData.FindAsync(playerName);
                 if (result != null)
                 {
                     return result;
