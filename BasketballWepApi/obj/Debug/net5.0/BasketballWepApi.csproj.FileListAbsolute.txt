@@ -59,3 +59,9 @@ D:\Programming\C#\Final\BasketballWepApi\BasketballWepApi\obj\Debug\net5.0\Baske
 D:\Programming\C#\Final\BasketballWepApi\BasketballWepApi\obj\Debug\net5.0\ref\BasketballWepApi.dll
 D:\Programming\C#\Final\BasketballWepApi\BasketballWepApi\obj\Debug\net5.0\BasketballWepApi.pdb
 D:\Programming\C#\Final\BasketballWepApi\BasketballWepApi\obj\Debug\net5.0\BasketballWepApi.genruntimeconfig.cache
+D:\Programming\C#\Final\BasketballWepApi\BasketballWepApi\bin\Debug\net5.0\Azure.Core.dll
+D:\Programming\C#\Final\BasketballWepApi\BasketballWepApi\bin\Debug\net5.0\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
+D:\Programming\C#\Final\BasketballWepApi\BasketballWepApi\bin\Debug\net5.0\Azure.Identity.dll
+D:\Programming\C#\Final\BasketballWepApi\BasketballWepApi\bin\Debug\net5.0\Azure.Security.KeyVault.Secrets.dll
+D:\Programming\C#\Final\BasketballWepApi\BasketballWepApi\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Programming\C#\Final\BasketballWepApi\BasketballWepApi\bin\Debug\net5.0\Microsoft.Identity.Client.Extensions.Msal.dll
