@@ -76,7 +76,6 @@ namespace WebApi.Controllers
         [Route("teams/{teamName}")]
         public async Task<TeamData> GetTeamByName(string teamName)
         {
-            //var result = FindTeam(teamName);
             teamName = teamName.ToLower();
             CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
 
@@ -103,17 +102,6 @@ namespace WebApi.Controllers
             }
         }
 
-        private TeamData FindTeam(string teamName)
-        {
-            foreach (var team in _dbContext.TeamsData)
-            {
-                if (team.name.ToLower() == teamName.ToLower() || team.shortName.ToLower() == teamName.ToLower())
-                {
-                    return team;
-                }
-            }
-            return null;
-        }
 
 
 
@@ -126,8 +114,8 @@ namespace WebApi.Controllers
         [Route("players/{playerName}")]
         public async Task<PlayerData> GetPlayerByName(string playerName)
         {
-            var result = FindPlayer(playerName);
-
+            //var result = FindPlayer(playerName);
+            var result = await _dbContext.PlayersData.FindAsync(playerName);
             if (result != null)
             {
                 return result;

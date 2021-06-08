@@ -12,9 +12,9 @@ namespace BasketballWebApi.Models
     }
     public class PlayerData
     {
-        [Key]
         public string playerId { get; set; }
         public int number { get; set; }
+        [Key]
         public string name { get; set; }
         public string teamId { get; set; }
         public string place { get; set; }
