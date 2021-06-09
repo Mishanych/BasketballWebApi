@@ -161,27 +161,42 @@ namespace WebApi.Controllers
             {
                 await _leaguesController.GetAllLeagues();
             }
-            var matches = FindMatch(leagueName, matchDate);
-            if (matches != null)
+            string leagueId = string.Empty;
+            foreach (var league in _dbContext.LeaguesData)
             {
-                return matches;
+                if (league.leagueName.ToLower() == leagueName.ToLower() || league.leagueShortName.ToLower() == leagueName.ToLower())
+                {
+                    leagueId = league.leagueId;
+                    break;
+                }
             }
-            else
+            if (leagueId == null)
             {
-
-                string leagueId = string.Empty;
-                var result = await _dbContext.LeaguesData.FindAsync(leagueName);
-                if (result != null)
-                {
-                    leagueId = result.leagueId;
-                }
-                else
-                {
-                    return null;
-                }
-
-                return await _matchesController.GetAllMatchesByDate(matchDate, leagueId);
+                return null;
             }
+            return await _matchesController.GetAllMatchesByDate(matchDate, leagueId);
+            //}
+            //var matches = FindMatch(leagueName, matchDate);
+            //if (matches != null)
+            //{
+            //    return matches;
+            //}
+            //else
+            //{
+
+            //    string leagueId = string.Empty;
+            //    var result = await _dbContext.LeaguesData.FindAsync(leagueName);
+            //    if (result != null)
+            //    {
+            //        leagueId = result.leagueId;
+            //    }
+            //    else
+            //    {
+            //        return null;
+            //    }
+
+            //    return await _matchesController.GetAllMatchesByDate(matchDate, leagueId);
+            //}
         }
 
         private List<MatchData> FindMatch(string leagueName, string matchDate)
@@ -191,7 +206,7 @@ namespace WebApi.Controllers
             foreach (var league in _dbContext.LeaguesData)
             {
                 
-                if ((league.leagueName.ToLower() == leagueName.ToLower() || league.leagueShortName.ToLower() == leagueName.ToLower()) && league.Matches.Any())
+                if ((league.leagueName.ToLower() == leagueName.ToLower() || league.leagueShortName.ToLower() == leagueName.ToLower()))
                 {
                     foreach (var matchInfo in league.Matches)
                     {
