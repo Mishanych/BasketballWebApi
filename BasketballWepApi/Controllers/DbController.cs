@@ -1,5 +1,6 @@
 ﻿using BasketballWebApi.Controllers;
 using BasketballWebApi.Models;
+using BasketballWepApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -175,71 +176,32 @@ namespace WebApi.Controllers
                 return null;
             }
             return await _matchesController.GetAllMatchesByDate(matchDate, leagueId);
-            //}
-            //var matches = FindMatch(leagueName, matchDate);
-            //if (matches != null)
-            //{
-            //    return matches;
-            //}
-            //else
-            //{
-
-            //    string leagueId = string.Empty;
-            //    var result = await _dbContext.LeaguesData.FindAsync(leagueName);
-            //    if (result != null)
-            //    {
-            //        leagueId = result.leagueId;
-            //    }
-            //    else
-            //    {
-            //        return null;
-            //    }
-
-            //    return await _matchesController.GetAllMatchesByDate(matchDate, leagueId);
-            //}
+            
         }
 
-        private List<MatchData> FindMatch(string leagueName, string matchDate)
-        {
-            var listOfMatches = new List<MatchData>();
 
-            foreach (var league in _dbContext.LeaguesData)
+        [HttpGet]
+        [Route("game/{matchId}")]
+        public async Task<MatchData> FindMatch(string matchId)
+        {
+            
+            var result = await _dbContext.MatchesData.FindAsync(matchId);
+
+            if(result == null)
             {
-                
-                if ((league.leagueName.ToLower() == leagueName.ToLower() || league.leagueShortName.ToLower() == leagueName.ToLower()))
+                result = await _matchesController.GetMatchById(matchId);
+                if(result == null)
                 {
-                    foreach (var matchInfo in league.Matches)
-                    {
-                        var standardDate = UnixTimeStampToDateTime(matchInfo.matchTime);
-                        DateTime result = DateTime.ParseExact(matchDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                        if (standardDate.CompareTo(result) == 0)
-                        {
-                            listOfMatches.Add(matchInfo);
-                        }
-                    }
+                    return null;
                 }
-
             }
 
-
-            if (listOfMatches.Any())
-            {
-                return listOfMatches;
-            }
-            else
-            {
-                return null;
-            }
+            return result;
         }
-
-        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
-        {
-            // Unix timestamp is seconds past epoch
-            DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-            return dtDateTime;
-        }
+        
 
         #endregion
+
+
     }
 }

@@ -208,24 +208,6 @@ namespace BasketballWepApi.Migrations
                     b.ToTable("TeamsData");
                 });
 
-            modelBuilder.Entity("BasketballWepApi.Models.Favourite", b =>
-                {
-                    b.Property<bool>("MatchIsStarted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("MatchIsEnded")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("matchDatamatchId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("MatchIsStarted");
-
-                    b.HasIndex("matchDatamatchId");
-
-                    b.ToTable("Favourite");
-                });
-
             modelBuilder.Entity("BasketballWebApi.Models.MatchData", b =>
                 {
                     b.HasOne("BasketballWebApi.Models.LeagueData", "League")
@@ -251,15 +233,6 @@ namespace BasketballWepApi.Migrations
                         .HasForeignKey("leagueId");
 
                     b.Navigation("League");
-                });
-
-            modelBuilder.Entity("BasketballWepApi.Models.Favourite", b =>
-                {
-                    b.HasOne("BasketballWebApi.Models.MatchData", "matchData")
-                        .WithMany()
-                        .HasForeignKey("matchDatamatchId");
-
-                    b.Navigation("matchData");
                 });
 
             modelBuilder.Entity("BasketballWebApi.Models.LeagueData", b =>

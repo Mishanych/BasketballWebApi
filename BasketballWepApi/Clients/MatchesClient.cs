@@ -47,5 +47,13 @@ namespace BasketballWebApi.Clients
             return result;
         }
 
+        public async Task<Matches> GetMatchById(string matchId)
+        {
+            var response = await _client.GetAsync($"schedule/basic?api_key={_apiKey}&matchId={matchId}");
+            response.EnsureSuccessStatusCode();
+            var content = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<Matches>(content);
+            return result;
+        }
     }
 }
