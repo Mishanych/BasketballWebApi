@@ -10,9 +10,7 @@ namespace BasketballWepApi.Models
     public class Favourite
     {
         [Key]
-        public string playerId { get; set; }
-        public bool MatchIsStarted { get; set; }
-        public bool MatchIsEnded { get; set; }
-        public MatchData matchData { get; set; }
+        public string UserId { get; set; }
+        public List<string> MatchesId { get; set; }
     }
 }

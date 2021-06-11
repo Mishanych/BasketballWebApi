@@ -124,6 +124,52 @@ namespace BasketballWebApi.Controllers
             }
             return responses;
         }
+
+
+
+
+        [HttpGet]
+        [Route("matchId/{matchId}")]
+        public async Task<MatchData> GetMatchById(string matchId)
+        {
+            var match = await _matchesClient.GetMatchById(matchId);
+            var allData = match.data;
+            MatchData response = new MatchData
+            {
+                matchId = match.data.FirstOrDefault().matchId,
+                leagueId = match.data.FirstOrDefault().leagueId,
+                leagueName = match.data.FirstOrDefault().leagueName,
+                quarterCount = match.data.FirstOrDefault().quarterCount,
+                matchTime = match.data.FirstOrDefault().matchTime,
+                status = match.data.FirstOrDefault().status,
+                quarterRemainTime = match.data.FirstOrDefault().quarterRemainTime,
+                homeName = match.data.FirstOrDefault().homeName,
+                awayName = match.data.FirstOrDefault().awayName,
+                homeScore = match.data.FirstOrDefault().homeScore,
+                awayScore = match.data.FirstOrDefault().awayScore,
+                leagueSeason = match.data.FirstOrDefault().leagueSeason,
+                matchType = match.data.FirstOrDefault().matchType,
+                roundType = match.data.FirstOrDefault().roundType,
+                group = match.data.FirstOrDefault().group
+            };
+            try
+            {
+                await _dbContext.MatchesData.AddAsync(response);
+
+                foreach (var league in _dbContext.LeaguesData)
+                {
+                    if (league.leagueId == response.leagueId)
+
+                        league.Matches.Add(response);
+                }
+
+                await _dbContext.SaveChangesAsync();
+            }
+            catch { }
+
+            return response;
+
+        }
     }
 }
 
