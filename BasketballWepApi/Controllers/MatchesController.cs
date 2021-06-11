@@ -151,7 +151,7 @@ namespace BasketballWebApi.Controllers
                 matchType = match.data.FirstOrDefault().matchType,
                 roundType = match.data.FirstOrDefault().roundType,
                 group = match.data.FirstOrDefault().group
-            });
+            };
             try
             {
                 await _dbContext.MatchesData.AddAsync(response);
