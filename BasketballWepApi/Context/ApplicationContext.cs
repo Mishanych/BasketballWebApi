@@ -1,5 +1,4 @@
 ﻿using BasketballWebApi.Models;
-using BasketballWepApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ namespace WebApi.Context
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<Favourite> Favourite { get; set; }
+        
         public DbSet<LeagueData> LeaguesData { get; set; }
         public DbSet<MatchData> MatchesData { get; set; }
         public DbSet<TeamData> TeamsData { get; set; }

@@ -1,6 +1,5 @@
 ﻿using BasketballWebApi.Controllers;
 using BasketballWebApi.Models;
-using BasketballWepApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
